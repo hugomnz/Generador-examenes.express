@@ -1,0 +1,19 @@
+# --- Control de saltos de línea ---
+# Fuerza a que todos los archivos de texto usen LF (estándar en Linux/Mac, y recomendado en repos públicos).
+* text=auto eol=lf
+
+# --- Archivos específicos ---
+*.js     text eol=lf
+*.css    text eol=lf
+*.html   text eol=lf
+*.ejs    text eol=lf
+*.json   text eol=lf
+*.md     text eol=lf
+
+# --- Archivos binarios (Git no intentará mostrar diffs) ---
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.gif    binary
+*.pdf    binary
+*.ico    binary
