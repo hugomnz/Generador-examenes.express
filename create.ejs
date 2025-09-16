@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Crear examen</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/">Home</a> |
+      <a href="/about">About</a>
+    </nav>
+  </header>
+
+  <h1>Nuevo examen</h1>
+
+  <form action="/save" method="POST">
+    <% for (let i = 0; i < cantidad; i++) { %>
+      <fieldset>
+        <legend>Ejercicio <%= i + 1 %></legend>
+        <label>Puntuación:
+          <input type="number" name="puntuacion[]" step="0.01" required>
+        </label><br>
+        <label>Enunciado:
+          <textarea name="enunciado[]" required></textarea>
+        </label>
+      </fieldset>
+      <br>
+    <% } %>
+    <button type="submit">Guardar examen</button>
+  </form>
+</body>
+</html>
