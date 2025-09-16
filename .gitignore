@@ -1,0 +1,36 @@
+# --- Node.js / Express ---
+# Dependencias
+node_modules/
+
+# Archivos de logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Archivos de entorno (si los usas para PORT, claves API, etc.)
+.env
+.env.local
+.env.*.local
+
+# Carpetas de compilación o cache
+dist/
+build/
+coverage/
+.cache/
+.tmp/
+
+# --- Sistema / Editor ---
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Linux / Vim
+*.swp
+
+# IDEs
+.idea/
+.vscode/
+*.code-workspace
