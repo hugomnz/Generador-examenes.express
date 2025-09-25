@@ -1,13 +1,21 @@
 {
   "name": "pec2-ej1",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Aplicación Express con EJS y PDFKit para crear, listar y descargar exámenes en PDF.",
+  "main": "app.js",
   "scripts": {
+    "start": "node app.js",
+    "dev": "NODE_ENV=development node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "express",
+    "ejs",
+    "pdfkit",
+    "nodejs",
+    "examenes"
+  ],
+  "author": "TU NOMBRE",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
