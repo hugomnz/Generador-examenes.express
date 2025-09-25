@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 // Archivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Array global para almacenar exámenes
+// Array global para almacenar exámenes (en memoria)
 const examenes = [];
 
 // Variable temporal para almacenar la cantidad de ejercicios
@@ -32,7 +32,7 @@ app.get('/about', (req, res) => {
 
 // POST /create - genera el formulario dinámico
 app.post('/create', (req, res) => {
-  const cantidad = parseInt(req.body.cantidad);
+  const cantidad = parseInt(req.body.cantidad, 10);
   examenTemporal = { cantidad };
   res.render('create', { cantidad });
 });
@@ -45,7 +45,7 @@ app.post('/save', (req, res) => {
 
   for (let i = 0; i < puntuacion.length; i++) {
     ejercicios.push({
-      puntuacion: parseInt(puntuacion[i]),
+      puntuacion: parseInt(puntuacion[i], 10),
       enunciado: enunciado[i]
     });
   }
@@ -62,7 +62,7 @@ app.post('/save', (req, res) => {
 
 // GET /examen/:id - muestra los ejercicios del examen
 app.get('/examen/:id', (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = parseInt(req.params.id, 10);
   const examen = examenes[id];
 
   if (!examen) {
@@ -74,7 +74,7 @@ app.get('/examen/:id', (req, res) => {
 
 // GET /examen/:id/pdf - genera el PDF para ese examen
 app.get('/examen/:id/pdf', (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = parseInt(req.params.id, 10);
   const examen = examenes[id];
 
   if (!examen) {
@@ -91,8 +91,10 @@ app.get('/examen/:id/pdf', (req, res) => {
 
   doc.pipe(res);
 
+  // Título del examen
   doc.fontSize(18).fillColor('blue').text(`Examen ${id + 1}`, { underline: true });
 
+  // Ejercicios
   examen.ejercicios.forEach((ej, index) => {
     doc.moveDown();
     doc.fontSize(14).fillColor('black').text(`Ejercicio ${index + 1}`);
@@ -109,7 +111,7 @@ app.use((req, res) => {
 });
 
 // Iniciar servidor
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Servidor escuchando en http://localhost:${PORT}`);
+  console.log(`✅ Servidor escuchando en http://localhost:${PORT}`);
 });
